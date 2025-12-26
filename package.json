@@ -53,6 +53,6 @@
       },
       "scripts": {
             "dev": "vite",
-            "build": "vite build --output dist"
+            "build": "vite build"
       }
 }
