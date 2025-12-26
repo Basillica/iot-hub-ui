@@ -1,4 +1,4 @@
-import { Database, Cloud, Cpu, Zap, Bell, Lock, GitBranch, Server, Layers } from 'lucide-react';
+import { Database, Cpu, Zap, Bell, Lock, GitBranch, Server, Layers } from 'lucide-react';
 
 export function Architecture() {
   const components = [

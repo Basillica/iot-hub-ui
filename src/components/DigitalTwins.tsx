@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area, BarChart, Bar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
-import { Box, Thermometer, Droplets, Gauge, TrendingUp, Clock, Database, Cpu, Package, Layers, Activity, AlertTriangle, CheckCircle, Factory, MapPin, User, Zap, Settings, Play, Pause, RotateCcw, Download, Eye, Brain, Sparkles, Target, Shield } from 'lucide-react';
+import { Box, Thermometer, Droplets, TrendingUp, Clock, Package, Layers, Activity, AlertTriangle, CheckCircle, Factory, MapPin, User, Zap, Settings, Play, Pause, RotateCcw, Download, Eye, Brain, Sparkles, Target, Shield } from 'lucide-react';
 
 // Performance data for component twins
 const componentPerformanceData = [
@@ -168,24 +168,24 @@ export function DigitalTwins({ organizationId }: { organizationId: string }) {
               <AreaChart data={componentPerformanceData}>
                 <defs>
                   <linearGradient id="wearGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#f97316" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="#f97316" stopOpacity={0}/>
+                    <stop offset="5%" stopColor="#f97316" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="#f97316" stopOpacity={0} />
                   </linearGradient>
                   <linearGradient id="predictedGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0}/>
+                    <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
                 <XAxis dataKey="time" stroke="#94a3b8" />
                 <YAxis stroke="#94a3b8" />
-                <Tooltip 
-                  contentStyle={{ 
-                    backgroundColor: '#1e293b', 
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: '#1e293b',
                     border: '1px solid #334155',
                     borderRadius: '8px',
                     color: '#fff'
-                  }} 
+                  }}
                 />
                 <Area type="monotone" dataKey="threshold" stroke="#ef4444" fill="none" strokeDasharray="5 5" name="Threshold" />
                 <Area type="monotone" dataKey="wear" stroke="#f97316" fill="url(#wearGradient)" strokeWidth={2} name="Actual Wear" />
@@ -269,13 +269,13 @@ export function DigitalTwins({ organizationId }: { organizationId: string }) {
                 <PolarRadiusAxis stroke="#94a3b8" />
                 <Radar name="Current" dataKey="current" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.3} />
                 <Radar name="Baseline" dataKey="baseline" stroke="#8b5cf6" fill="#8b5cf6" fillOpacity={0.2} strokeDasharray="5 5" />
-                <Tooltip 
-                  contentStyle={{ 
-                    backgroundColor: '#1e293b', 
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: '#1e293b',
                     border: '1px solid #334155',
                     borderRadius: '8px',
                     color: '#fff'
-                  }} 
+                  }}
                 />
               </RadarChart>
             </ResponsiveContainer>
@@ -354,13 +354,13 @@ export function DigitalTwins({ organizationId }: { organizationId: string }) {
                 <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
                 <XAxis dataKey="time" stroke="#94a3b8" />
                 <YAxis stroke="#94a3b8" domain={[80, 100]} />
-                <Tooltip 
-                  contentStyle={{ 
-                    backgroundColor: '#1e293b', 
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: '#1e293b',
                     border: '1px solid #334155',
                     borderRadius: '8px',
                     color: '#fff'
-                  }} 
+                  }}
                 />
                 <Line type="monotone" dataKey="target" stroke="#8b5cf6" strokeDasharray="5 5" strokeWidth={2} name="Target" />
                 <Line type="monotone" dataKey="efficiency" stroke="#06b6d4" strokeWidth={3} name="Actual Efficiency" />
@@ -441,20 +441,20 @@ export function DigitalTwins({ organizationId }: { organizationId: string }) {
               <AreaChart data={processThroughputData}>
                 <defs>
                   <linearGradient id="actualGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="#3b82f6" stopOpacity={0}/>
+                    <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
                 <XAxis dataKey="time" stroke="#94a3b8" />
                 <YAxis stroke="#94a3b8" />
-                <Tooltip 
-                  contentStyle={{ 
-                    backgroundColor: '#1e293b', 
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: '#1e293b',
                     border: '1px solid #334155',
                     borderRadius: '8px',
                     color: '#fff'
-                  }} 
+                  }}
                 />
                 <Area type="monotone" dataKey="actual" stroke="#3b82f6" fill="url(#actualGradient)" strokeWidth={2} name="Actual" />
                 <Line type="monotone" dataKey="target" stroke="#8b5cf6" strokeDasharray="5 5" strokeWidth={2} name="Target" />
@@ -656,11 +656,10 @@ export function DigitalTwins({ organizationId }: { organizationId: string }) {
                 setSelectedTwinType(type.id);
                 setSelectedTwin(getCurrentTwins()[0]);
               }}
-              className={`p-4 rounded-xl border transition-all ${
-                isSelected
+              className={`p-4 rounded-xl border transition-all ${isSelected
                   ? `bg-${type.color}-600/20 border-${type.color}-500`
                   : 'bg-slate-800/50 border-slate-700 hover:bg-slate-700/50'
-              }`}
+                }`}
             >
               <Icon className={`w-6 h-6 mx-auto mb-2 ${isSelected ? `text-${type.color}-400` : 'text-slate-400'}`} />
               <p className={`text-sm ${isSelected ? 'text-white' : 'text-slate-400'}`}>{type.name}</p>
@@ -674,33 +673,30 @@ export function DigitalTwins({ organizationId }: { organizationId: string }) {
       <div className="flex gap-2 bg-slate-800/50 p-2 rounded-lg border border-slate-700 w-fit">
         <button
           onClick={() => setViewMode('dashboard')}
-          className={`px-4 py-2 rounded-lg transition-all ${
-            viewMode === 'dashboard'
+          className={`px-4 py-2 rounded-lg transition-all ${viewMode === 'dashboard'
               ? 'bg-blue-600 text-white'
               : 'text-slate-400 hover:text-white'
-          }`}
+            }`}
         >
           <Activity className="w-4 h-4 inline mr-2" />
           Live Dashboard
         </button>
         <button
           onClick={() => setViewMode('lifecycle')}
-          className={`px-4 py-2 rounded-lg transition-all ${
-            viewMode === 'lifecycle'
+          className={`px-4 py-2 rounded-lg transition-all ${viewMode === 'lifecycle'
               ? 'bg-blue-600 text-white'
               : 'text-slate-400 hover:text-white'
-          }`}
+            }`}
         >
           <Clock className="w-4 h-4 inline mr-2" />
           Lifecycle
         </button>
         <button
           onClick={() => setViewMode('simulation')}
-          className={`px-4 py-2 rounded-lg transition-all ${
-            viewMode === 'simulation'
+          className={`px-4 py-2 rounded-lg transition-all ${viewMode === 'simulation'
               ? 'bg-blue-600 text-white'
               : 'text-slate-400 hover:text-white'
-          }`}
+            }`}
         >
           <Settings className="w-4 h-4 inline mr-2" />
           Simulation
@@ -719,11 +715,10 @@ export function DigitalTwins({ organizationId }: { organizationId: string }) {
                   <button
                     key={twin.id}
                     onClick={() => setSelectedTwin(twin)}
-                    className={`w-full text-left p-3 rounded-lg border transition-all ${
-                      selectedTwin.id === twin.id
+                    className={`w-full text-left p-3 rounded-lg border transition-all ${selectedTwin.id === twin.id
                         ? 'bg-blue-600/20 border-blue-500'
                         : 'bg-slate-900/50 border-slate-700 hover:bg-slate-700/50'
-                    }`}
+                      }`}
                   >
                     <div className="flex items-center gap-2 mb-1">
                       <div className={`w-2 h-2 rounded-full bg-${status}-500`}></div>
@@ -750,7 +745,7 @@ export function DigitalTwins({ organizationId }: { organizationId: string }) {
                   </div>
                   <div className={`px-3 py-1 rounded-lg text-sm bg-${getStatusColor(selectedTwin.status)}-500/20 text-${getStatusColor(selectedTwin.status)}-400`}>
                     {selectedTwin.status === 'normal' ? 'Synchronized' :
-                     selectedTwin.status === 'warning' ? 'Warning' : 'Critical'}
+                      selectedTwin.status === 'warning' ? 'Warning' : 'Critical'}
                   </div>
                 </div>
               </div>
@@ -800,13 +795,13 @@ export function DigitalTwins({ organizationId }: { organizationId: string }) {
                   <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
                   <XAxis dataKey="stage" stroke="#94a3b8" />
                   <YAxis stroke="#94a3b8" />
-                  <Tooltip 
-                    contentStyle={{ 
-                      backgroundColor: '#1e293b', 
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: '#1e293b',
                       border: '1px solid #334155',
                       borderRadius: '8px',
                       color: '#fff'
-                    }} 
+                    }}
                   />
                   <Bar dataKey="value" fill="#3b82f6" radius={[8, 8, 0, 0]} />
                 </BarChart>
@@ -851,7 +846,7 @@ export function DigitalTwins({ organizationId }: { organizationId: string }) {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700">
                     <p className="text-slate-400 text-sm mb-1">Simulated Efficiency</p>

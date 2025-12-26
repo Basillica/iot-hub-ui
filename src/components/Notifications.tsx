@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Bell, AlertTriangle, AlertCircle, Info, CheckCircle, Mail, MessageSquare, Smartphone, Filter, X } from 'lucide-react';
+import { Bell, AlertTriangle, AlertCircle, Info, CheckCircle, Mail, MessageSquare, Smartphone, X } from 'lucide-react';
 
 interface Notification {
   id: string;
@@ -87,7 +87,7 @@ export function Notifications({ organizationId }: { organizationId: string }) {
   });
 
   const markAsRead = (id: string) => {
-    setNotifications(notifications.map(n => 
+    setNotifications(notifications.map(n =>
       n.id === id ? { ...n, read: true } : n
     ));
   };
@@ -143,7 +143,7 @@ export function Notifications({ organizationId }: { organizationId: string }) {
           </div>
           <p className="text-slate-400 text-sm mt-1">Real-time alerts from rule engine threshold violations</p>
         </div>
-        <button 
+        <button
           onClick={markAllAsRead}
           className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
         >
@@ -183,11 +183,10 @@ export function Notifications({ organizationId }: { organizationId: string }) {
             <button
               key={type}
               onClick={() => setFilterType(type)}
-              className={`px-4 py-2 rounded-lg transition-colors text-sm capitalize ${
-                filterType === type
+              className={`px-4 py-2 rounded-lg transition-colors text-sm capitalize ${filterType === type
                   ? 'bg-blue-600 text-white'
                   : 'bg-slate-800 text-slate-300 hover:bg-slate-700 border border-slate-700'
-              }`}
+                }`}
             >
               {type}
             </button>
@@ -225,15 +224,14 @@ export function Notifications({ organizationId }: { organizationId: string }) {
             return (
               <div
                 key={notif.id}
-                className={`bg-slate-800/50 backdrop-blur-sm border rounded-xl p-5 transition-all ${
-                  notif.read ? 'border-slate-700' : 'border-blue-500/50 bg-blue-500/5'
-                }`}
+                className={`bg-slate-800/50 backdrop-blur-sm border rounded-xl p-5 transition-all ${notif.read ? 'border-slate-700' : 'border-blue-500/50 bg-blue-500/5'
+                  }`}
               >
                 <div className="flex items-start gap-4">
                   <div className={`w-12 h-12 rounded-lg border flex items-center justify-center flex-shrink-0 ${colorClasses[color as keyof typeof colorClasses]}`}>
                     <Icon className="w-6 h-6" />
                   </div>
-                  
+
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-4 mb-2">
                       <div>
@@ -255,7 +253,7 @@ export function Notifications({ organizationId }: { organizationId: string }) {
                           {notif.device}
                         </span>
                       </div>
-                      
+
                       <div className="flex items-center gap-2">
                         <span className="text-slate-500 text-xs">Sent via:</span>
                         <div className="flex gap-1">

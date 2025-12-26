@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { LineChart, Line, AreaChart, Area, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { TrendingUp, TrendingDown, Wifi, WifiOff, Clock, RefreshCw, AlertCircle } from 'lucide-react';
 import type { Widget } from '../CustomDashboards';
@@ -41,7 +41,7 @@ class DataStream {
 
   subscribe(widgetId: string, sensorType: string, callback: (data: DataPoint) => void) {
     this.subscribers.set(widgetId, callback);
-    
+
     const baseValue = this.getBaseValue(sensorType);
     let offset = 0;
 
@@ -50,7 +50,7 @@ class DataStream {
       offset += 0.1;
       const value = baseValue + Math.sin(offset) * 3 + (Math.random() - 0.5) * 2;
       const now = Date.now();
-      
+
       callback({
         timestamp: now,
         time: new Date(now).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
@@ -98,7 +98,7 @@ export function LiveWidgetRenderer({ widget }: Props) {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [timeRange, setTimeRange] = useState<TimeRange>('2h');
   const maxDataPoints = TIME_RANGES.find(range => range.id === timeRange)?.maxPoints || 144;
-  const [filter, setFilter] = useState<DataFilter>(createDefaultFilter(getSensorDataType(widget.sensorType)));
+  const [filter, setFilter] = useState<DataFilter>(createDefaultFilter(getSensorDataType(widget.sensorType), widget.sensorType));
 
   useEffect(() => {
     // Initialize with historical data (last 2 hours)
@@ -202,7 +202,7 @@ export function LiveWidgetRenderer({ widget }: Props) {
 
   // Apply filters to data
   const filteredData = data.filter(point => applyFilter(point.value, filter));
-  
+
   // Calculate data range for numeric filters
   const dataRange = data.length > 0 ? {
     min: Math.min(...data.map(d => d.value)),
@@ -217,11 +217,10 @@ export function LiveWidgetRenderer({ widget }: Props) {
           <button
             key={range.id}
             onClick={() => setTimeRange(range.id)}
-            className={`px-3 py-1.5 rounded-md text-xs transition-all ${
-              timeRange === range.id
-                ? 'bg-blue-600 text-white shadow-lg'
-                : 'text-slate-400 hover:text-white hover:bg-slate-800'
-            }`}
+            className={`px-3 py-1.5 rounded-md text-xs transition-all ${timeRange === range.id
+              ? 'bg-blue-600 text-white shadow-lg'
+              : 'text-slate-400 hover:text-white hover:bg-slate-800'
+              }`}
           >
             {range.label}
           </button>
@@ -264,10 +263,9 @@ export function LiveWidgetRenderer({ widget }: Props) {
       </div>
       <div className="flex items-center gap-2 text-xs text-slate-500">
         <span>{connectionStatus.latency}ms</span>
-        <div className={`w-1.5 h-1.5 rounded-full ${
-          connectionStatus.latency < 50 ? 'bg-green-500' :
+        <div className={`w-1.5 h-1.5 rounded-full ${connectionStatus.latency < 50 ? 'bg-green-500' :
           connectionStatus.latency < 100 ? 'bg-yellow-500' : 'bg-red-500'
-        }`}></div>
+          }`}></div>
       </div>
     </div>
   );
@@ -287,10 +285,10 @@ export function LiveWidgetRenderer({ widget }: Props) {
           <ResponsiveContainer width="100%" height={200}>
             <LineChart data={filteredData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-              <XAxis 
-                dataKey="time" 
-                stroke="#94a3b8" 
-                tick={{ fontSize: 10 }} 
+              <XAxis
+                dataKey="time"
+                stroke="#94a3b8"
+                tick={{ fontSize: 10 }}
                 interval={Math.floor(filteredData.length / 6)}
               />
               <YAxis stroke="#94a3b8" tick={{ fontSize: 12 }} />
@@ -304,11 +302,11 @@ export function LiveWidgetRenderer({ widget }: Props) {
                 labelFormatter={(value) => `Time: ${value}`}
                 formatter={(value: any) => [`${value}${widget.config.unit}`, 'Value']}
               />
-              <Line 
-                type="monotone" 
-                dataKey="value" 
-                stroke="#3b82f6" 
-                strokeWidth={2} 
+              <Line
+                type="monotone"
+                dataKey="value"
+                stroke="#3b82f6"
+                strokeWidth={2}
                 dot={false}
                 isAnimationActive={false}
               />
@@ -348,9 +346,9 @@ export function LiveWidgetRenderer({ widget }: Props) {
           <ResponsiveContainer width="100%" height={200}>
             <AreaChart data={filteredData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-              <XAxis 
-                dataKey="time" 
-                stroke="#94a3b8" 
+              <XAxis
+                dataKey="time"
+                stroke="#94a3b8"
                 tick={{ fontSize: 10 }}
                 interval={Math.floor(filteredData.length / 6)}
               />
@@ -363,11 +361,11 @@ export function LiveWidgetRenderer({ widget }: Props) {
                   color: '#fff'
                 }}
               />
-              <Area 
-                type="monotone" 
-                dataKey="value" 
-                stroke="#8b5cf6" 
-                fill="#8b5cf6" 
+              <Area
+                type="monotone"
+                dataKey="value"
+                stroke="#8b5cf6"
+                fill="#8b5cf6"
                 fillOpacity={0.3}
                 isAnimationActive={false}
               />
@@ -404,9 +402,9 @@ export function LiveWidgetRenderer({ widget }: Props) {
           <ResponsiveContainer width="100%" height={200}>
             <BarChart data={filteredData.slice(-20)}>
               <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-              <XAxis 
-                dataKey="time" 
-                stroke="#94a3b8" 
+              <XAxis
+                dataKey="time"
+                stroke="#94a3b8"
                 tick={{ fontSize: 10 }}
                 interval={4}
               />
@@ -508,9 +506,8 @@ export function LiveWidgetRenderer({ widget }: Props) {
               <div className="text-slate-400 text-sm mb-2">{widget.sensorType.replace('_', ' ').toUpperCase()}</div>
               <div className="text-white text-5xl mb-2">{currentValue.toFixed(1)}</div>
               <div className="text-slate-400 text-xl mb-3">{widget.config.unit}</div>
-              <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg ${
-                trend === 'up' ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'
-              }`}>
+              <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg ${trend === 'up' ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'
+                }`}>
                 {trend === 'up' ? <TrendingUp className="w-5 h-5" /> : <TrendingDown className="w-5 h-5" />}
                 <span>{trendPercent}% from last reading</span>
               </div>
@@ -563,32 +560,29 @@ export function LiveWidgetRenderer({ widget }: Props) {
       const isWarning = threshold?.warning && currentValue >= threshold.warning;
       const isCritical = threshold?.critical && currentValue >= threshold.critical;
       const isNormal = !isWarning && !isCritical;
-      
+
       return (
         <div>
           <ConnectionStatusBar />
           <TimeRangeSelector />
           <div className="flex flex-col items-center justify-center py-4">
-            <div className={`w-20 h-20 rounded-full flex items-center justify-center mb-3 ${
-              isCritical ? 'bg-red-500/20 border-4 border-red-500' :
+            <div className={`w-20 h-20 rounded-full flex items-center justify-center mb-3 ${isCritical ? 'bg-red-500/20 border-4 border-red-500' :
               isWarning ? 'bg-yellow-500/20 border-4 border-yellow-500' :
-              'bg-green-500/20 border-4 border-green-500'
-            }`}>
-              <div className={`text-2xl ${
-                isCritical ? 'text-red-400' :
-                isWarning ? 'text-yellow-400' :
-                'text-green-400'
+                'bg-green-500/20 border-4 border-green-500'
               }`}>
+              <div className={`text-2xl ${isCritical ? 'text-red-400' :
+                isWarning ? 'text-yellow-400' :
+                  'text-green-400'
+                }`}>
                 {isCritical ? <AlertCircle className="w-8 h-8" /> :
-                 isWarning ? '!' : '✓'}
+                  isWarning ? '!' : '✓'}
               </div>
             </div>
             <div className="text-center">
-              <div className={`text-lg mb-2 ${
-                isCritical ? 'text-red-400' :
+              <div className={`text-lg mb-2 ${isCritical ? 'text-red-400' :
                 isWarning ? 'text-yellow-400' :
-                'text-green-400'
-              }`}>
+                  'text-green-400'
+                }`}>
                 {isCritical ? 'Critical' : isWarning ? 'Warning' : 'Normal'}
               </div>
               <div className="text-white text-3xl mb-1">{currentValue.toFixed(1)}{widget.config.unit}</div>

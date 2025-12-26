@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Filter, X, ChevronDown, ChevronUp } from 'lucide-react';
+import { Filter, ChevronDown, ChevronUp } from 'lucide-react';
 import type { DataFilter, NumericFilter, BooleanFilter, CategoricalFilter } from '../../utils/dataFilters';
 
 interface Props {
@@ -57,14 +57,12 @@ export function DataFilterPanel({ filter, onFilterChange, dataRange, sensorUnit 
             <span className="text-slate-300 text-sm">Enable Filter</span>
             <button
               onClick={handleToggle}
-              className={`relative w-11 h-6 rounded-full transition-colors ${
-                filter.enabled ? 'bg-blue-600' : 'bg-slate-700'
-              }`}
+              className={`relative w-11 h-6 rounded-full transition-colors ${filter.enabled ? 'bg-blue-600' : 'bg-slate-700'
+                }`}
             >
               <div
-                className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transition-transform ${
-                  filter.enabled ? 'translate-x-5' : 'translate-x-0'
-                }`}
+                className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full transition-transform ${filter.enabled ? 'translate-x-5' : 'translate-x-0'
+                  }`}
               />
             </button>
           </div>

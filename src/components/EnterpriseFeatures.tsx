@@ -1,30 +1,22 @@
 import { useState } from 'react';
-import { 
-  Brain, 
-  Network, 
-  Shield, 
-  Workflow, 
-  TrendingUp, 
-  Users, 
+import {
+  Brain,
+  Shield,
+  Workflow,
+  TrendingUp,
+  Users,
   FileText,
   Zap,
   Globe,
-  Lock,
   BarChart3,
   GitBranch,
-  Download,
   Clock,
-  AlertTriangle,
-  Search,
   Code,
   Smartphone,
-  Database,
-  CloudCog,
   Sparkles,
   Cpu,
   Target,
   CheckCircle2,
-  ChevronRight,
   Star
 } from 'lucide-react';
 import { FeatureImplementationGuide } from './enterprise/FeatureImplementationGuide';
@@ -620,16 +612,15 @@ export function EnterpriseFeatures() {
         {ENTERPRISE_FEATURES.map((category) => {
           const Icon = category.icon;
           const isActive = selectedCategory === category.id;
-          
+
           return (
             <button
               key={category.id}
               onClick={() => setSelectedCategory(category.id)}
-              className={`p-4 rounded-xl border transition-all text-left ${
-                isActive
+              className={`p-4 rounded-xl border transition-all text-left ${isActive
                   ? 'bg-blue-600 border-blue-500 text-white'
                   : 'bg-slate-800/50 border-slate-700 text-slate-300 hover:border-slate-600'
-              }`}
+                }`}
             >
               <Icon className={`w-6 h-6 mb-2 ${isActive ? 'text-white' : 'text-slate-400'}`} />
               <div className={`text-sm mb-1 ${isActive ? 'text-white' : 'text-white'}`}>
@@ -639,11 +630,10 @@ export function EnterpriseFeatures() {
                 {category.features.length} features
               </div>
               <div className="mt-2">
-                <span className={`text-xs px-2 py-0.5 rounded ${
-                  category.tier === 'enterprise' ? 'bg-purple-500/20 text-purple-300' :
-                  category.tier === 'pro' ? 'bg-blue-500/20 text-blue-300' :
-                  'bg-green-500/20 text-green-300'
-                }`}>
+                <span className={`text-xs px-2 py-0.5 rounded ${category.tier === 'enterprise' ? 'bg-purple-500/20 text-purple-300' :
+                    category.tier === 'pro' ? 'bg-blue-500/20 text-blue-300' :
+                      'bg-green-500/20 text-green-300'
+                  }`}>
                   {category.tier.toUpperCase()}
                 </span>
               </div>
@@ -684,13 +674,12 @@ export function EnterpriseFeatures() {
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
                         <h4 className="text-white">{feature.name}</h4>
-                        <span className={`px-2 py-0.5 rounded text-xs ${
-                          feature.status === 'available' ? 'bg-green-500/20 text-green-400' :
-                          feature.status === 'beta' ? 'bg-blue-500/20 text-blue-400' :
-                          'bg-slate-500/20 text-slate-400'
-                        }`}>
+                        <span className={`px-2 py-0.5 rounded text-xs ${feature.status === 'available' ? 'bg-green-500/20 text-green-400' :
+                            feature.status === 'beta' ? 'bg-blue-500/20 text-blue-400' :
+                              'bg-slate-500/20 text-slate-400'
+                          }`}>
                           {feature.status === 'available' ? 'Available' :
-                           feature.status === 'beta' ? 'Beta' : 'Coming Soon'}
+                            feature.status === 'beta' ? 'Beta' : 'Coming Soon'}
                         </span>
                         <span className="text-xs text-blue-400 ml-auto flex items-center gap-1">
                           <Code className="w-3 h-3" />

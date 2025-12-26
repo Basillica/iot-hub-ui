@@ -1,4 +1,4 @@
-import { X, Code, Database, Cloud, Zap, TrendingUp, Shield, CheckCircle2, AlertCircle } from 'lucide-react';
+import { X, Code, Target, Clock, Database, Cloud, Zap, Star, TrendingUp, Shield, CheckCircle2, AlertCircle } from 'lucide-react';
 
 interface TechStack {
   frontend: string[];
@@ -528,8 +528,8 @@ export function FeatureImplementationGuide({ featureId, featureName, onClose }: 
             <h2 className="text-3xl text-white mb-2">{guide.featureName}</h2>
             <p className="text-slate-400">Complete Implementation Guide</p>
           </div>
-          <button 
-            onClick={onClose} 
+          <button
+            onClick={onClose}
             className="text-slate-400 hover:text-white transition-colors"
           >
             <X className="w-7 h-7" />
@@ -826,7 +826,7 @@ export function FeatureImplementationGuide({ featureId, featureName, onClose }: 
             <p className="text-slate-400 text-sm">
               Need help implementing? Our team can provide consulting and code reviews.
             </p>
-            <button 
+            <button
               onClick={onClose}
               className="px-6 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors"
             >

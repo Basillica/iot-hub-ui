@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Plus, Play, Pause, Edit, Trash2, AlertTriangle, CheckCircle, Clock, Workflow } from 'lucide-react';
+import { Plus, Play, Pause, Edit, Trash2, AlertTriangle, Workflow } from 'lucide-react';
 import { VisualRuleBuilder } from './VisualRuleBuilder';
 
 interface Rule {
@@ -82,8 +82,8 @@ export function RuleEngine({ organizationId }: { organizationId: string }) {
   const [viewMode, setViewMode] = useState<'list' | 'visual'>('list');
 
   const toggleRuleStatus = (ruleId: string) => {
-    setRules(rules.map(rule => 
-      rule.id === ruleId 
+    setRules(rules.map(rule =>
+      rule.id === ruleId
         ? { ...rule, status: rule.status === 'active' ? 'paused' : 'active' }
         : rule
     ));
@@ -119,7 +119,7 @@ export function RuleEngine({ organizationId }: { organizationId: string }) {
           <p className="text-slate-400 text-sm mt-1">Configure threshold-based rules with stateful processing and sliding windows</p>
         </div>
         <div className="flex items-center gap-2">
-          <button 
+          <button
             onClick={() => setShowAddRule(true)}
             className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
           >
@@ -164,11 +164,10 @@ export function RuleEngine({ organizationId }: { organizationId: string }) {
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-white text-lg">{rule.name}</h3>
-                  <span className={`px-2 py-1 rounded text-xs ${
-                    rule.status === 'active' 
-                      ? 'bg-green-500/20 text-green-400' 
+                  <span className={`px-2 py-1 rounded text-xs ${rule.status === 'active'
+                      ? 'bg-green-500/20 text-green-400'
                       : 'bg-orange-500/20 text-orange-400'
-                  }`}>
+                    }`}>
                     {rule.status === 'active' ? 'Active' : 'Paused'}
                   </span>
                   <span className="px-2 py-1 bg-blue-500/20 text-blue-400 rounded text-xs">

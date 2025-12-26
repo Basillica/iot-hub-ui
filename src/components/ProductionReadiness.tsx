@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CheckCircle, Circle, AlertTriangle, Target, Zap, Shield, Code, Globe, Users, TrendingUp, Database, Cloud, Smartphone, FileText, Settings, GitBranch, Lock, Eye, Plug, Box, Layers, Activity, Brain, Award, HelpCircle } from 'lucide-react';
+import { CheckCircle, Circle, Clock, AlertTriangle, Target, Zap, Shield, Code, Globe, TrendingUp, Database, Cloud, Smartphone, GitBranch, Plug, Box, Activity, Brain, HelpCircle } from 'lucide-react';
 
 interface Feature {
   id: string;
@@ -759,7 +759,7 @@ export function ProductionReadiness() {
           <span className="text-2xl text-blue-400">{completionRate}%</span>
         </div>
         <div className="w-full h-4 bg-slate-700 rounded-full overflow-hidden mb-6">
-          <div 
+          <div
             className="h-full bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-500"
             style={{ width: `${completionRate}%` }}
           ></div>
@@ -796,11 +796,10 @@ export function ProductionReadiness() {
               <button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
-                className={`px-4 py-2 rounded-lg transition-all flex items-center gap-2 ${
-                  selectedCategory === category.id
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700'
-                }`}
+                className={`px-4 py-2 rounded-lg transition-all flex items-center gap-2 ${selectedCategory === category.id
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700'
+                  }`}
               >
                 <Icon className="w-4 h-4" />
                 {category.name}
@@ -822,11 +821,10 @@ export function ProductionReadiness() {
           </select>
           <button
             onClick={() => setShowOnlyMissing(!showOnlyMissing)}
-            className={`px-4 py-2 rounded-lg transition-all ${
-              showOnlyMissing
-                ? 'bg-orange-600 text-white'
-                : 'bg-slate-800 text-slate-400 hover:text-white'
-            }`}
+            className={`px-4 py-2 rounded-lg transition-all ${showOnlyMissing
+              ? 'bg-orange-600 text-white'
+              : 'bg-slate-800 text-slate-400 hover:text-white'
+              }`}
           >
             Show Gaps Only
           </button>
@@ -864,15 +862,14 @@ export function ProductionReadiness() {
                       </p>
                     </div>
                     <div className="flex flex-col items-end gap-2">
-                      <span className={`px-3 py-1 rounded text-xs ${
-                        feature.status === 'implemented' ? 'bg-green-500/20 text-green-400' :
+                      <span className={`px-3 py-1 rounded text-xs ${feature.status === 'implemented' ? 'bg-green-500/20 text-green-400' :
                         feature.status === 'partial' ? 'bg-blue-500/20 text-blue-400' :
-                        feature.status === 'planned' ? 'bg-purple-500/20 text-purple-400' :
-                        'bg-slate-500/20 text-slate-400'
-                      }`}>
+                          feature.status === 'planned' ? 'bg-purple-500/20 text-purple-400' :
+                            'bg-slate-500/20 text-slate-400'
+                        }`}>
                         {feature.status === 'implemented' ? '✓ Implemented' :
-                         feature.status === 'partial' ? '⚡ Partial' :
-                         feature.status === 'planned' ? '📅 Planned' : '○ Missing'}
+                          feature.status === 'partial' ? '⚡ Partial' :
+                            feature.status === 'planned' ? '📅 Planned' : '○ Missing'}
                       </span>
                       <span className={`px-3 py-1 rounded text-xs ${getPriorityColor(feature.priority)}`}>
                         {feature.priority.toUpperCase()}
